@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
  */
 @Configuration
 @EnableAuthorizationServer
-public class OAuthConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     UserApprovalHandler approvalHandler;
@@ -37,11 +37,12 @@ public class OAuthConfig extends AuthorizationServerConfigurerAdapter {
         // TODO 텍스트로 설정 구성에 대한 개선 방법 정리해보기. 그리고 실제 API와 클라이언트, SCOPE 간의 관계도..
         clients.inMemory()
             .withClient("client-app")
-                .resourceIds("apis")
-                .authorizedGrantTypes("authorization_code", "implicit")
+                .resourceIds("account")
+                .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_USER")
                 .scopes("ACCOUNT_INQUIRY", "ACCOUNT_TRANSFER")
                 .secret("_client_app_secret")
+                .redirectUris("http://localhost:9000/main.app")
         ;
     }
 
