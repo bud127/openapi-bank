@@ -1,4 +1,4 @@
-package openapi.bank.client.web;
+package openapi.bank.client.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
