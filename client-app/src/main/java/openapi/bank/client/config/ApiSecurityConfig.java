@@ -29,10 +29,12 @@ public class ApiSecurityConfig {
         final AuthorizationCodeResourceDetails resourceDetails = new AuthorizationCodeResourceDetails();
         resourceDetails.setId("account");
         resourceDetails.setClientId("client-app");
-        resourceDetails.setClientSecret("_client_app_secret");
+//        resourceDetails.setClientSecret("_client_app_secret");
         resourceDetails.setAccessTokenUri(accessTokenURI);
         resourceDetails.setUserAuthorizationUri(userAuthorizationURI);
         resourceDetails.setScope(Arrays.asList("ACCOUNT_INQUIRY", "ACCOUNT_TRANSFER"));
+        resourceDetails.setGrantType("authorization_code");
+        resourceDetails.setUseCurrentUri(true); // default is true
 
         return resourceDetails;
     }

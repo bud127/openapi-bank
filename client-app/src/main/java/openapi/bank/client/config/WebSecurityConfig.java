@@ -16,12 +16,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user01").password("1234").roles("USER");
+        auth.inMemoryAuthentication().withUser("client-user01").password("1234").roles("USER");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers("/resources/**", "**/favicon.ico", "/css/**", "/js/**");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutSuccessUrl("/login.app")
                 .permitAll()
-            ;
+        ;
     }
 
 }

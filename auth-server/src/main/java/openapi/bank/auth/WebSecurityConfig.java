@@ -23,15 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void defaultUserDetails(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication()
-                .withUser("user01").password("1234").roles("USER").and()
-                .withUser("user02").password("1234").roles("ADMIN").and()
-                .withUser("user03").password("1234").roles("GUEST")
+                .withUser("bank-user01").password("1234").roles("USER").and()
+                .withUser("bank-user02").password("1234").roles("ADMIN").and()
+                .withUser("bank-user03").password("1234").roles("GUEST")
         ;
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/images/**", "/oauth/**", "**/favicon.ico", "/css/**", "/js/**");
+        web.ignoring().antMatchers("/images/**", "/oauth/**");
     }
 
     @Bean
@@ -45,7 +45,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/login.bank").permitAll()
-                .anyRequest().hasAnyRole("ADMIN", "USER")
+                .anyRequest().hasAnyRole("USER")
+                .and()
+            .exceptionHandling()
+                .accessDeniedPage("/login.bank?_error=true")
                 .and()
             .csrf()
                 .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
@@ -54,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.bank")
                 .loginProcessingUrl("/login")
                 .failureUrl("/login.bank?_error=true")
+                .defaultSuccessUrl("/main.bank")
                 .and()
             .logout()
                 .logoutUrl("/logout")
