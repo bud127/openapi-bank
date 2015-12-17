@@ -31,15 +31,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/**").hasRole("USER")
                 .anyRequest().permitAll()
                 .and()
+            .sessionManagement()
+                .and()
             .formLogin()
                 .loginPage("/login.app")
                 .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/index.app")
                 .failureUrl("/login.app?_error=true")
                 .permitAll()
                 .and()
             .logout()
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/login.app")
                 .permitAll()
+                .and()
         ;
     }
 

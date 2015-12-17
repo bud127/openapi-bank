@@ -39,10 +39,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .withClient("client-app")
                 .resourceIds("account")
                 .authorizedGrantTypes("authorization_code")
-                .authorities("ROLE_USER")
+                .authorities("ROLE_CLIENT")
                 .scopes("ACCOUNT_INQUIRY", "ACCOUNT_TRANSFER")
-//                .secret("_client_app_secret")
-//                .redirectUris("http://localhost:9000/.app")
+                .secret("_client_app_secret")
         ;
     }
 
