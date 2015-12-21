@@ -1,4 +1,4 @@
-package openapi.bank.api;
+package openapi.bank.api.config;
 
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Configuration;

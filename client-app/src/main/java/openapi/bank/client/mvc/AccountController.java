@@ -18,7 +18,7 @@ public class AccountController {
     @RequestMapping("/account/inquiry")
     public String inquiry(ModelMap model) {
         Account account =
-                template.getForObject("http://localhost:9002/account/inquiry/123-456-789", Account.class);
+                template.getForObject("http://localhost:9001/api/account/inquiry/123-456-789", Account.class);
         model.put("account", account);
         return "inquiry";
     }

@@ -14,7 +14,8 @@ import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * @author chanwook
@@ -36,7 +37,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // TODO 텍스트로 설정 구성에 대한 개선 방법 정리해보기. 그리고 실제 API와 클라이언트, SCOPE 간의 관계도..
         clients.inMemory()
-            .withClient("client-app")
+                .withClient("client-app")
                 .resourceIds("account")
                 .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_CLIENT")
@@ -57,7 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+        return new JwtTokenStore(new JwtAccessTokenConverter());
     }
 
     @Bean
@@ -78,5 +79,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         handler.setUseApprovalStore(true);
         return handler;
     }
-
 }

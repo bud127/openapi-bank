@@ -16,13 +16,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 @Configuration
 @EnableWebSecurity
-//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    //FIXME Caused by: org.springframework.security.config.annotation.AlreadyBuiltException: This object has already been built
 
     @Autowired
     public void defaultUserDetails(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
+        builder
+            .inMemoryAuthentication()
                 .withUser("bank-user01").password("1234").roles("USER").and()
                 .withUser("bank-user02").password("1234").roles("ADMIN").and()
                 .withUser("bank-user03").password("1234").roles("GUEST")
