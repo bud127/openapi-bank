@@ -1,4 +1,4 @@
-package openapi.bank.auth;
+package openapi.bank.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -35,9 +35,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // TODO 텍스트로 설정 구성에 대한 개선 방법 정리해보기. 그리고 실제 API와 클라이언트, SCOPE 간의 관계도..
         clients.inMemory()
-                .withClient("client-app")
+            .withClient("client-app")
                 .resourceIds("account")
                 .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_CLIENT")
@@ -48,7 +47,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore()).authenticationManager(authenticationManager).userApprovalHandler(approvalHandler);
+        endpoints
+            .tokenStore(tokenStore())
+            .authenticationManager(authenticationManager)
+            .userApprovalHandler(approvalHandler);
     }
 
     @Override

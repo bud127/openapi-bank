@@ -1,4 +1,4 @@
-package openapi.bank.auth;
+package openapi.bank.auth.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.AuthorizationRequest;
@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.provider.approval.ApprovalStoreUserAp
 import java.util.Collection;
 
 /**
+ * {@inheritDoc https://github.com/spring-projects/spring-security-oauth/blob/master/samples/oauth2/sparklr/src/main/java/org/springframework/security/oauth/examples/sparklr/oauth/SparklrUserApprovalHandler.java} 코드를 복사해 테스트함
+ *
  * @author chanwook
  */
 public class DefaultUserApprovalHandler extends ApprovalStoreUserApprovalHandler {
