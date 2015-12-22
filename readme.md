@@ -12,4 +12,4 @@ OpenAPI를 생각하고 만든 간단한 OAuth2 샘플입니다.
 7. Resource 서버로 API 호출이 일어난 후 정상적으로 inquiry 샘플 화면 출력
 8. 하면 ok!
 
-가장 많은 참조는 Spring OAuth2 샘플 프로젝트를 참고했습니다. (https://github.com/spring-projects/spring-security-oauth/tree/master/samples/oauth2) 
+가장 많은 참조는 [Spring OAuth2 샘플 프로젝트](https://github.com/spring-projects/spring-security-oauth/tree/master/samples/oauth2)를 참고했습니다.
