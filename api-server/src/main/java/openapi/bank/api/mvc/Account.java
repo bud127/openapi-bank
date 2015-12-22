@@ -7,8 +7,11 @@ import java.io.Serializable;
  */
 public class Account implements Serializable {
     
-    private final String accountNumber;
-    private final double balance;
+    private String accountNumber;
+    private double balance;
+
+    public Account() {
+    }
 
     public Account(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
